@@ -1,0 +1,85 @@
+﻿<Window x:Class="FilamentRemaining.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilamentRemaining"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Filament remaining calculator, determined by circumfrential winding of the filament.  Written by Mark Gillespie, all rights reserved."
+               Grid.Column="0"
+               Grid.Row="0"
+               TextWrapping="Wrap"
+               />
+        <Label Content="Select a predefined filament"
+               Grid.Column="0"
+               Grid.Row="1"/>
+        <ComboBox Grid.Column="1"
+                  Grid.Row="1"
+                  ItemsSource="{Binding PredefinedSpools.Definitions.Keys}"
+                  SelectedValue="{Binding SelectedPredefinedSpool}"/>
+        <Label Content="Enter the first depth"
+               Grid.Column="0"
+               Grid.Row="2"/>
+        <TextBox Grid.Column="1"
+                 Grid.Row="2"
+                 HorizontalAlignment="Stretch"
+                 Height="32"
+                 Text="{Binding FilamentCalc.Depth1}"/>
+        <Label Content="Enter the second depth"
+               Grid.Column="0"
+               Grid.Row="3"
+               />
+        <TextBox Grid.Column="1"
+                 Grid.Row="3"
+                 HorizontalAlignment="Stretch"
+                 Height="32"
+                 Text="{Binding FilamentCalc.Depth2}"/>
+        <Label Content="Percent recovery for overlap"
+               Grid.Column="0"
+               Grid.Row="4"/>
+        <Slider Value="{Binding FilamentCalc.PercentOffset}"
+                Minimum="90"
+                Maximum="95"
+                SmallChange=".1"
+                LargeChange="1"
+                Width="100"
+                Height="32"
+                Grid.Column="1"
+                Grid.Row="4"
+                ToolTip="{Binding FilamentCalc.PercentOffset}"/>
+        <TextBlock Text="Filament Remaining :"
+                   Grid.Row="5"
+                   Grid.Column="0"/>
+        <TextBlock Text="{Binding FilamentRemaining}"
+                   Grid.Row="5"
+                   Grid.Column="1"/>
+        <Button Content="Calculate"
+                ToolTip="Calculate the amount of filament remaining"
+                Height="32"
+                Width="100"
+                Grid.Column="1"
+                Grid.Row="6"
+                HorizontalAlignment="Left"
+                Margin="5"
+                Command="{Binding DoCalculate}"/>
+    </Grid>
+</Window>
